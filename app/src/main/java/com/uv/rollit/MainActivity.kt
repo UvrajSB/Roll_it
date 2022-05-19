@@ -1,15 +1,18 @@
 package com.uv.rollit
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //instantiating global object of toast
+        var toast: Toast? = null
+
 
         //Creating the reference for the UI elements (aka views) present in activity_main.xml
         val rollButton = findViewById<Button>(R.id.roll_btn_main)
@@ -34,7 +37,10 @@ class MainActivity : AppCompatActivity() {
             // set the image source
             diceImage.setImageResource(imageSource)
             // toast is a simple message displayed on the screen when you click the roll button
-            Toast.makeText(this, "You got the number ${currentNum} !!", Toast.LENGTH_SHORT).show()
+            toast?.cancel() //to cancel the previous toast
+            toast = Toast.makeText(this, "You got the number ${currentNum} !!", Toast.LENGTH_SHORT)
+            toast?.show()
+
         }
     }
 
